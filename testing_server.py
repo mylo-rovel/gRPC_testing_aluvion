@@ -89,16 +89,6 @@ class TestingRpcFeaturesServicer(ClientServerModule.TestingRpcFeaturesServicer):
             print(f'Letra recibida: {requestLetter}')
             yield ReqResModule.RealNumber(numberToUse=ascii_dict[requestLetter])
 
-
-    # def RouteChat(self, request_iterator, context):
-    #     # prev_notes = []
-    #     # for new_note in request_iterator:
-    #     #     for prev_note in prev_notes:
-    #     #         if prev_note.location == new_note.location:
-    #     #             yield prev_note
-    #     #     prev_notes.append(new_note)
-    #     pass
-
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     ClientServerModule.add_TestingRpcFeaturesServicer_to_server(
