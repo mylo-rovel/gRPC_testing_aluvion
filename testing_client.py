@@ -26,6 +26,7 @@ import testing_proto_file_pb2 as ReqResModule
 import testing_proto_file_pb2_grpc as ClientServerModule
 
 venv_dict = dict(dotenv_values(".env"))
+print(f'Servidor a alcanzar: {venv_dict["SERVER_ADDRESS"]}:{venv_dict["PORT"]}')
 
 
 def testing_Get_CurrentTime(stub):
