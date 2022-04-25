@@ -28,7 +28,7 @@ venv_dict = dict(dotenv_values(".env"))
 ascii_dict = {key:value for value, key in enumerate(ascii_letters)}
 
 # put here aux functions
-
+print("iniciando servidor")
 
 class TestingRpcFeaturesServicer(ClientServerModule.TestingRpcFeaturesServicer):
     """Provides methods that implement functionality of testing server."""
