@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+// option java_multiple_files = true;
+// option java_package = "io.grpc.examples.routeguide";
+// option java_outer_classname = "RouteGuideProto";
+// option objc_class_prefix = "RTG";
+
+// package routeguide;
+
+
+service TestingRpcFeatures {
+  // Testing simple RPC req, res
+  rpc CurrentTime(TextMessage) returns (TimeStructure) {}
+  
+  // Testing stream type response from server
+  // client will send some params of a number generation and server will respond with
+  // a stream of generated numbers
+  rpc GenRandomNumbersStream(NumberGenParams) returns (stream RealNumber) {}
+  
+  // Testing stream type request from client (or "stub")
+  // server will receive a stream of numbers and it will sum all them down to a var
+  rpc SumOfStreamNumbers(stream RealNumber) returns (RealNumber) {}
+
+  // A Bidirectional streaming RPC.
+  // Testing stream type request and response
+  // client will send a number and server will transform it into a letter using module and a hash table
+  rpc TransformWordsToNumbers(stream TextMessage) returns (stream RealNumber) {}
+}
+
+message TextMessage {
+    string someMessage = 1;
+}
+
+message RealNumber {
+    int32 numberToUse = 1;
+}
+
+message TimeStructure {
+    string hour = 1;
+    string date = 2;
+    TextMessage timeMessage = 3;
+}
+
+message NumberGenParams {
+    int32 floorNumber = 1;
+    int32 increment = 2;
+}
+
+
+// command to use
+// python3 -m grpc_tools.protoc -I /home/emilio/Documents/Capstone_UCN_CodeStuff/trying_to_use_gRPC/src/proto_files/ --python_out=/home/emilio/Documents/Capstone_UCN_CodeStuff/trying_to_use_gRPC/src/ --grpc_python_out=/home/emilio/Documents/Capstone_UCN_CodeStuff/trying_to_use_gRPC/src/ /home/emilio/Documents/Capstone_UCN_CodeStuff/trying_to_use_gRPC/src/proto_files/testing_proto_file.proto
+
+// python3 -m grpc_tools.protoc --help
