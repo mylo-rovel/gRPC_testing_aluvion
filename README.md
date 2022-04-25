@@ -1,6 +1,6 @@
 # gRPC_testing_aluvion
 
-TIP: Usar este comando para instalar todo (ojalá en un entorno virtual ACTIVADO) 
+TIP: Usar este comando para instalar todo
 => pip install -r requirements.txt
 
 No olvidar crear el típico .env (al menos con PORT y SERVER_ADDRESS)
