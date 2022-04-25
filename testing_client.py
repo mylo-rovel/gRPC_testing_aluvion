@@ -115,25 +115,13 @@ def run():
             "TransformWordsToNumbers": testing_TransformWordsToNumbers
     }
 
-    with grpc.insecure_channel(f'localhost:{venv_dict["PORT"]}') as channel:
+    with grpc.insecure_channel(f'{venv_dict["SERVER_ADDRESS"]}:{venv_dict["PORT"]}') as channel:
+        # stub is the client object
         stub = ClientServerModule.TestingRpcFeaturesStub(channel)
         userChoise = getKeyboardInput(requestsOptions)
         selectedRequest = requestsOptions[userChoise]
 
         selectedRequest(stub)
-
-        # print("\n\n-------------- testing_Get_CurrentTime --------------\n\n")
-        # testing_Get_CurrentTime(stub)
-
-        # print("-------------- testing_Get_RandomNumbersStream --------------")
-        # testing_Get_RandomNumbersStream(stub)
-
-        # print("-------------- testing_Get_SumOfStreamNumbers --------------")
-        # testing_Get_SumOfStreamNumbers(stub)
-
-        # print("-------------- testing_TransformWordsToNumbers --------------")
-        # testing_TransformWordsToNumbers(stub)
-
 
 if __name__ == '__main__':
     logging.basicConfig()
